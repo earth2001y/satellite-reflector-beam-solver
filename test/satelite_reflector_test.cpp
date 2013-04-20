@@ -2,7 +2,7 @@
 #include <cppunit/extensions/HelperMacros.h>
 #include <cmath>
 
-#include "../src/satelite-reflector.hpp"
+#include "../src/satelite_reflector.hpp"
 #include "../src/mathematic_utils.hpp"
 
 class SateliteReflectorTest : public CPPUNIT_NS::TestFixture {
