@@ -4,3 +4,37 @@
 反射衛星砲ごっこのビーム運動のソルバです。
 Satelite Orbit Analysis を必要とします。
 
+--
+作り方:
+  1. 次のものを用意します。
+    - Satelite Orbit Analysis のコード。
+      https://github.com/earth2001y/satelite-reflector-beam-solver
+    - Eigen3 (C++の線形代数、数値計算ライブラリ)
+      http://eigen.tuxfamily.org/
+
+  2. Satelite Orbit Analysis と Eigen の場所をMakefileに書く
+
+  3. make
+    satelite-reflector-beam-solver という実行モジュールができます。
+
+使い方:
+  % satelite-reflector-beam-solver NN.NNN EE.EEE HH.HHH 'TLE1' 'TLE2'
+     NN.NNN: 射点の緯度(北緯) [degree] 南半球の場合は負数
+     EE.EEE: 射点の経度(東経) [degree] 西半球の場合は負数
+     HH.HHH: 射点の標高 [m]
+     'TLE1': TLEの1行目(必ずクオートかダブルクオートで囲む)
+     'TLE2': TLEの2行目(必ずクオートかダブルクオートで囲む)
+
+  実行の結果、着弾点の情報として次のものが標準出力に出てくる。
+   T NN.NNN EE.EEE HH.HHH
+  または
+   F
+
+     T/F:    着弾点があればT、なければF
+     NN.NNN: 着弾点の緯度(北緯) [degree] 南半球の場合は負数
+     EE.EEE: 着弾点の経度(東経) [degree] 西半球の場合は負数
+     HH.HHH: 着弾点の標高 [m]
+
+//
+
+
