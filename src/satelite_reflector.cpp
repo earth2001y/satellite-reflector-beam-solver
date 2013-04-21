@@ -97,10 +97,10 @@ bool find_impact(const polar& P, polar* X,
   *X = Xr.toPolar().toGeodetic(t); // 測地座標系に変換
   X->latitude  *= 180. / M_PI;     // radian -> degree
   X->longitude *= 180. / M_PI;     // radian -> degree
-  if ( X->latitude >  180.)  X->latitude  -= 180.;
-  if ( X->latitude < -180.)  X->latitude  += 180.;
-  if ( X->longitude >  180.) X->longitude -= 180.;
-  if ( X->longitude < -180.) X->longitude += 180.;
+  if      ( X->latitude  >  180.) X->latitude  -= 360.;
+  else if ( X->latitude  < -180.) X->latitude  += 360.;
+  if      ( X->longitude >  180.) X->longitude -= 360.;
+  else if ( X->longitude < -180.) X->longitude += 360.;
 
   return f;
 }
