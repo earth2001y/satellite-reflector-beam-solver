@@ -7,7 +7,7 @@ TARGET=./satelite-reflector-beam-solver
 all:
 	$(CXX) -o $(TARGET) -I$(SOA)/src $(INCLUDES) -DUNITTEST src/*.cpp $(SOA)/src/*.cpp
 
-go-test:
+run-test:
 	$(TARGET) \
 		35.68 139.77 10.0 \
 		"1 20580U 90037B   13107.72940891  .00001584  00000-0  10118-3 0  2193" \
