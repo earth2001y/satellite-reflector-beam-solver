@@ -1,13 +1,17 @@
 #include <iostream>
 #include <cppunit/extensions/HelperMacros.h>
 #include <cmath>
+#include <string>
+#include <ctime>
 
 #include "../src/satelite_reflector.hpp"
 #include "../src/mathematic_utils.hpp"
+#include "coodinate_system.hpp"
 
 class SateliteReflectorTest : public CPPUNIT_NS::TestFixture {
   CPPUNIT_TEST_SUITE( SateliteReflectorTest );
   CPPUNIT_TEST( test_find_impact_point );
+  CPPUNIT_TEST( test_find_impact );
   CPPUNIT_TEST_SUITE_END();
 
 protected:
@@ -18,6 +22,7 @@ public:
 
 protected:
   void test_find_impact_point();
+  void test_find_impact();
 
 };
 
@@ -45,4 +50,36 @@ void SateliteReflectorTest::test_find_impact_point() {
   CPPUNIT_ASSERT_DOUBLES_EQUAL(P2[0], -30., 1.e-10);
   CPPUNIT_ASSERT_DOUBLES_EQUAL(P2[1],  40., 1.e-10);
   CPPUNIT_ASSERT_DOUBLES_EQUAL(P2[2],   0., 1.e-10);
+}
+
+void SateliteReflectorTest::test_find_impact() {
+#include <iostream>
+using namespace std;
+  // HST
+  std::string tle;
+  tle = std::string("1 20580U 90037B   13107.72940891  .00001584  00000-0  10118-3 0  2193")
+      + std::string("2 20580  28.4702 309.1211 0003456  63.1635  29.3970 15.03482263 60582");
+
+  // Tokyo
+  ::polar P0;
+  P0.latitude  = ( 35. + (41./60.));
+  P0.longitude = (139. + (46./60.));
+  P0.altitude  = 0.01;
+
+  // now
+  time_t t;
+  time(&t);
+
+  // find impact
+  ::polar P1;
+  bool f = find_impact(P0,&P1,tle,&t);
+
+  cout << endl;
+  if (f) {
+    cout << "N: " << P1.latitude  << endl
+         << "E: " << P1.longitude << endl
+         << "H: " << P1.altitude  << endl;
+  } else {
+    cout << " no impact " << endl;
+  }
 }
