@@ -2,8 +2,8 @@
  * 反射衛星砲の実計算関数群
  *****************************************************************************/
 
-#ifndef __SATELITE_REFLECTOR_HPP__
-#define __SATELITE_REFLECTOR_HPP__
+#ifndef __SATELLITE_REFLECTOR_HPP__
+#define __SATELLITE_REFLECTOR_HPP__
 
 #include <vector>
 #include <Eigen/Core>
@@ -17,5 +17,5 @@ Vector3dSet find_impact_point(
 bool find_impact(const polar& P, polar* X,
                  const std::string& tle_str, const time_t* t);
 
-#endif // __SATELITE_REFLETCTOR_HPP__
+#endif // __SATELLITE_REFLETCTOR_HPP__
 

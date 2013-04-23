@@ -2,7 +2,7 @@
 #include <ctime>
 #include <string>
 #include <coodinate_system.hpp>
-#include "satelite_reflector.hpp"
+#include "satellite_reflector.hpp"
 #include <iostream>
 
 int main(int argc, char* argv[])

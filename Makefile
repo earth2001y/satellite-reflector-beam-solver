@@ -1,8 +1,8 @@
 CXX=g++
-SOA=$(HOME)/dev/satelite-orbit-analysis
+SOA=$(HOME)/dev/satellite-orbit-analysis
 
 INCLUDES=-I/usr/local/include/eigen3
-TARGET=./satelite-reflector-beam-solver
+TARGET=./satellite-reflector-beam-solver
 
 all:
 	$(CXX) -o $(TARGET) -I$(SOA)/src $(INCLUDES) -DUNITTEST src/*.cpp $(SOA)/src/*.cpp

@@ -4,12 +4,12 @@
 #include <string>
 #include <ctime>
 
-#include "../src/satelite_reflector.hpp"
+#include "../src/satellite_reflector.hpp"
 #include "../src/mathematic_utils.hpp"
 #include "coodinate_system.hpp"
 
-class SateliteReflectorTest : public CPPUNIT_NS::TestFixture {
-  CPPUNIT_TEST_SUITE( SateliteReflectorTest );
+class SatelliteReflectorTest : public CPPUNIT_NS::TestFixture {
+  CPPUNIT_TEST_SUITE( SatelliteReflectorTest );
   CPPUNIT_TEST( test_find_impact_point );
   CPPUNIT_TEST( test_find_impact );
   CPPUNIT_TEST_SUITE_END();
@@ -26,17 +26,17 @@ protected:
 
 };
 
-CPPUNIT_TEST_SUITE_REGISTRATION( SateliteReflectorTest );
+CPPUNIT_TEST_SUITE_REGISTRATION( SatelliteReflectorTest );
 
 // 各テスト・ケースの実行直前に呼ばれる
-void SateliteReflectorTest::setUp() {
+void SatelliteReflectorTest::setUp() {
 }
 
 // 各テスト・ケースの実行直後に呼ばれる
-void SateliteReflectorTest::tearDown() {
+void SatelliteReflectorTest::tearDown() {
 }
 
-void SateliteReflectorTest::test_find_impact_point() {
+void SatelliteReflectorTest::test_find_impact_point() {
   Eigen::Vector3d P0( 30., 40.,  0.);
   Eigen::Vector3d P1(  0., 80.,  0.);
   Eigen::Vector3d  N(  0., 10.,  0.);
@@ -52,7 +52,7 @@ void SateliteReflectorTest::test_find_impact_point() {
   CPPUNIT_ASSERT_DOUBLES_EQUAL(P2[2],   0., 1.e-10);
 }
 
-void SateliteReflectorTest::test_find_impact() {
+void SatelliteReflectorTest::test_find_impact() {
 #include <iostream>
 using namespace std;
   // HST

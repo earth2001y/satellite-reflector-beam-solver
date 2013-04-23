@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SOA=$PWD/../satelite-orbit-analysis
+SOA=$PWD/../satellite-orbit-analysis
 OPT="-DUNITTEST"
 
 rm -f *.o ./soa-test
