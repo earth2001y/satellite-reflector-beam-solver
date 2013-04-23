@@ -7,8 +7,10 @@ Satelite Orbit Analysis を必要とします。
 --
 作り方:
   1. 次のものを用意します。
-    - Satelite Orbit Analysis のコード。
+    - Satelite Orbit Analysis (SOA) のコード
       https://github.com/earth2001y/satelite-reflector-beam-solver
+      SOAが依存するコード・ライブラリ類の情報は、SOAのドキュメントを
+      参照してください。
     - Eigen3 (C++の線形代数、数値計算ライブラリ)
       http://eigen.tuxfamily.org/
 
