@@ -54,12 +54,10 @@ bool find_impact(const polar& P, polar* X,
   orb.setTLE(&tle);
   double since_day = orb.elapsed_day(t);
   double since_min = since_day * 1440.;
-  double since_sec = since_day * 86400.;
 
   double motion = tle.motion; // revolutions per day
   double dayp6  = 1. / (6. * motion); // day for 1/6 revolution.
   double minp6  = dayp6 * 1440.;
-  double secp6  = dayp6 * 86400.;
 
   // 人工衛星の所在地
   double position0[3],position1[3],position2[3];
@@ -73,8 +71,8 @@ bool find_impact(const polar& P, polar* X,
   Eigen::Vector3d p2(position2);
   Eigen::Vector3d v1(velocity1);
 
-  Eigen::Vector3d n0 = normalize((p1-p0).cross(p2-p1)); // 軌道面の法線ベクトル
-  Eigen::Vector3d n1 = n0.cross(normalize(v1));         // 反射面の法線ベクトル
+  Eigen::Vector3d n0 = normalize(p0.cross(p2)); // 軌道面の法線ベクトル
+  Eigen::Vector3d n1 = v1.cross(normalize(n0)); // 反射面の法線ベクトル
 
   Eigen::Vector3d O(0.,0.,0.);
   Eigen::Vector3d R(6378.137,6378.137,6356.752); // 地球楕円体
