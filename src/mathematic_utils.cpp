@@ -83,7 +83,7 @@ Vector3dSet intersection(const Vector3d& P, const Vector3d& v,
   // となる方程式 A.t**2 + B.t + C = 0 を t について解く
   double A = ((v.array() / R.array()) * (v.array() / R.array())).sum();
   double B = ( P0.array() * v.array() * 2. / (R.array() * R.array())).sum();
-  double C = ((P.array() / R.array()) * (P0.array() / R.array())).sum() - 1.;
+  double C = ((P0.array() / R.array()) * (P0.array() / R.array())).sum() - 1.;
 
   // 解の判定
   double D = B*B - 4.*A*C;
