@@ -14,7 +14,7 @@ Vector3dSet find_impact_point(
     const Eigen::Vector3d& P1, const Eigen::Vector3d& N,
     const Eigen::Vector3d& O,  const Eigen::Vector3d& R);
 
-bool find_impact(const polar& P, polar* X,
+bool find_impact(const geodetic& P, geodetic* X,
                  const std::string& tle_str, const time_t* t);
 
 #endif // __SATELLITE_REFLETCTOR_HPP__

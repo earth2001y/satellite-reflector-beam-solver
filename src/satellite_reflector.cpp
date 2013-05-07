@@ -33,7 +33,7 @@ Vector3dSet find_impact_point(
 //  使う人工衛星のTLE
 //  現在時刻 t
 // から、地上の着弾点を得る
-bool find_impact(const polar& P, polar* X,
+bool find_impact(const geodetic& P, geodetic* X,
                  const std::string& tle_str, const time_t* t)
 {
   // TLE読み込み
@@ -42,11 +42,11 @@ bool find_impact(const polar& P, polar* X,
   std::string tle_str2 = tle_str.substr(69,69);
   tle.set(tle_str1,tle_str2);
 
-  // 地心赤道直交座標系での射点座標
-  ::polar Po = P;
-  Po.latitude  *= M_PI / 180.; // degree -> radian
-  Po.longitude *= M_PI / 180.; // degree -> radian
-  rectangular Pr = Po.toEquatorial(t).toRectangular();
+  // 地球自転角
+  double Pg = 2. * M_PI * greenwich_sidereal_time(t) / 24.;
+
+  // 地心直交座標系での射点座標
+  rectangular Pr = P.toRectangular(Pg);
   Eigen::Vector3d P0(Pr.X, Pr.Y, Pr.Z);
 
   // 軌道
@@ -91,14 +91,11 @@ bool find_impact(const polar& P, polar* X,
     Xr.Z = 0.0;
   }
 
-  ::polar x = Xr.toPolar();
-  *X = Xr.toPolar().toGeodetic(t); // 測地座標系に変換
-  X->latitude  *= 180. / M_PI;     // radian -> degree
-  X->longitude *= 180. / M_PI;     // radian -> degree
-  if      ( X->latitude  >  180.) X->latitude  -= 360.;
-  else if ( X->latitude  < -180.) X->latitude  += 360.;
-  if      ( X->longitude >  180.) X->longitude -= 360.;
-  else if ( X->longitude < -180.) X->longitude += 360.;
+  *X = Xr.toGeodetic(Pg); // 測地座標系に変換
+  if      ( X->latitude  >  M_PI) X->latitude  -= 2.*M_PI;
+  else if ( X->latitude  < -M_PI) X->latitude  += 2.*M_PI;
+  if      ( X->longitude >  M_PI) X->longitude -= 2.*M_PI;
+  else if ( X->longitude < -M_PI) X->longitude += 2.*M_PI;
 
   return f;
 }
